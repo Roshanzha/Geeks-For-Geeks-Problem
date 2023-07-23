@@ -1,0 +1,41 @@
+
+
+//User function Template for Java
+
+/*
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data = data;
+        next = null;
+    }
+}
+*/
+class Solution
+{
+    //Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head)
+    {
+        // add your code here
+        Node curr=head;
+        ArrayList<Integer> ar=new ArrayList<>();
+        // add your code here
+        while (curr!=null)
+        {
+            ar.add(curr.data);
+            curr=curr.next;
+        }
+        Collections.sort(ar);
+        curr=head;
+        int i=0;
+        while(curr!=null){
+            curr.data=ar.get(i);
+            i++;
+            curr=curr.next;
+        }
+        return head;
+    }
+}
