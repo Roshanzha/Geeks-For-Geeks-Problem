@@ -1,0 +1,58 @@
+
+
+//User function Template for Java
+
+
+/*
+// A Binary Tree node
+class Node
+{
+    int data;
+    Node left, right;
+
+    Node(int item)
+    {
+        data = item;
+        left = right = null;
+    }
+}
+*/
+
+class Spiral
+{
+    //Function to return a list containing the level order 
+    //traversal in spiral form.	
+    ArrayList<Integer> findSpiral(Node root) 
+    {
+        // Your code here
+         ArrayList<Integer> list=new ArrayList<>();
+        Queue<Node> q=new LinkedList<>();
+        int flag=0;
+        q.add(root);
+        while(!q.isEmpty()){
+            int n=q.size();
+            ArrayList<Integer> sublist=new ArrayList<>();
+            for(int i=0;i<n;i++){
+                Node curr=q.poll();
+                if(curr.left!=null){
+                    q.add(curr.left);
+                }
+                if(curr.right!=null){
+                    q.add(curr.right);
+                }
+                sublist.add(curr.data);
+            }
+            if(flag==0){
+                Collections.reverse(sublist);
+                flag=1;
+            }
+            else{
+                flag=0;
+            }
+            for(int i=0;i<sublist.size();i++){
+                list.add(sublist.get(i));
+            }
+        }
+        return list;
+    }
+}
