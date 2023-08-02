@@ -1,0 +1,58 @@
+
+
+class Pair{
+
+    int x;
+    int y;
+    int dist;
+
+    Pair(int i, int j, int d){
+        this.x=i;
+        this.y=j;
+        this.dist=d;
+    }
+}
+
+class Solution {
+    int shortestDistance(int N, int M, int A[][], int X, int Y) {
+        // code here
+        if(A[0][0]==0) return -1;
+        boolean[][] vis=new boolean[N][M];
+        Queue<Pair> q= new LinkedList<>();
+        q.add(new Pair(0,0,0));
+        vis[0][0]=true;
+        int[] x={1, -1, 0, 0};
+        int[] y={0, 0, 1, -1};
+        int count=0;
+        
+        while(!q.isEmpty()){
+            int n=q.size();
+            while(n-->0){
+               int nrow=q.peek().x;
+               int ncol=q.peek().y;
+               int dis=q.peek().dist;
+               count=Math.max(count, dis);
+               q.remove();
+               if(nrow==X && ncol==Y) return count;
+
+               for(int i=0; i<x.length; i++){
+                 int a= nrow+x[i];
+                 int b= ncol+y[i];
+                 if(a>=0 && a<N && b>=0 && b<M && !vis[a][b] && A[a][b]!=0){
+                     q.add(new Pair(a, b, dis+1));
+                     vis[a][b]=true;
+                       if(a==X && b==Y) return count+1;
+
+                 }
+
+               }
+
+            }
+
+        }
+
+        return -1;
+
+     }
+ 
+};
