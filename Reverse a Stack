@@ -1,0 +1,20 @@
+
+
+//User function Template for Java
+
+class Solution
+{ 
+    static void reverse(Stack<Integer> s)
+    {
+        // add your code here
+              Queue<Integer> queue = new LinkedList<>();
+          while (!s.isEmpty()) {
+            queue.add(s.pop());
+        }
+
+        
+        while (!queue.isEmpty()) {
+            s.push(queue.poll());
+        }
+    }
+}
