@@ -1,0 +1,42 @@
+
+
+
+//User function Template for Java
+
+
+class Solution
+{
+     public ArrayList<String> permutation(String S)
+    {
+        //Your code here
+        ArrayList<String> result = new ArrayList<String>(); // to store the permutations
+        permutationHelper(S, 0, S.length() - 1, result); // call the helper method
+        Collections.sort(result); // sort the result list in ascending order
+        return result;
+    }
+    
+    public void permutationHelper(String S, int l, int r, ArrayList<String> result)
+    {
+        if (l == r) // base case: no more characters to swap
+        {
+            result.add(S); // add the permutation to the result list
+            return;
+        }
+        
+        for (int i = l; i <= r; i++) // loop through the remaining characters
+        {
+            S = swap(S, l, i); // swap the first character with the current character
+            permutationHelper(S, l + 1, r, result); // recurse with the new string and the next position
+            S = swap(S, l, i); // backtrack by swapping back the characters
+        }
+    }
+    
+    public String swap(String S, int i, int j)
+    {
+        char[] charArray = S.toCharArray(); // convert the string to a char array
+        char temp = charArray[i]; // store the character at i in a temporary variable
+        charArray[i] = charArray[j]; // replace the character at i with the character at j
+        charArray[j] = temp; // replace the character at j with the temporary variable
+        return String.valueOf(charArray); // convert the char array back to a string and return it
+    }
+}
