@@ -1,0 +1,77 @@
+
+
+/*
+class Node {
+   int data;
+   Node next;
+
+  Node(int data) {
+      this.data = data;
+  }
+}
+*/
+// class Solution
+// {
+//     Node compute(Node head)
+//     {
+//         // your code here
+//     }
+// }
+  
+  
+  
+  
+  
+  class Solution
+{
+    Node compute(Node head)
+    {
+        // your code here
+        Node curr;
+        Node temp;
+        
+        if(head==null || head.next==null){
+            
+            return head;
+            
+        }
+        
+        // borgmmmmmmmmmmm
+        
+        
+        
+        // brrrrmmmmmmmmmmm
+        
+        
+        
+        curr=head;
+        temp=compute(head.next);
+        
+       if(curr.data<temp.data){
+           
+           curr=temp;
+           head=curr;
+           
+       }
+       
+       
+    //   rbbbbbbbbbbbbbbbb
+    
+        else{
+           
+           curr.next=temp;
+           head=curr;
+           
+       }
+       
+       
+       
+    //   brrrrrrrrrrrrrrrrrrrrr
+    
+    
+    
+    
+    
+        return head;
+    }
+}
