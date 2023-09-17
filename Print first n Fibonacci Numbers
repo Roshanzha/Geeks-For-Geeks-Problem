@@ -1,0 +1,26 @@
+
+
+
+
+//User function Template for Java
+
+
+class Solution
+{
+    public static void solve(int curr,long arr[] ,long prev ,long cur){
+        if(curr == arr.length)return;
+        arr[curr] = prev+ cur;
+        solve(curr+1,arr,cur,prev+cur);
+        return ;
+    }
+    
+    public static long[] printFibb(int n) 
+    {
+        if(n==1)return new long[]{1};
+        if(n==2)return new long[]{1,1};
+        long res[] = new long[n];
+        res[0] = res[1] = 1;
+        solve(2,res,1,1);
+        return res;
+    }
+}
