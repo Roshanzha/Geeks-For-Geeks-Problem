@@ -1,0 +1,29 @@
+
+
+//User function Template for Java
+
+class Solution
+{
+    String colName (long n)
+    {
+    	String res = ""; // to store the result
+    
+    	long temp;
+    	while (n > 0)
+    	{
+    	    n--;
+    		temp = n % 26;
+    		res += (char)('A' + temp);
+    		n /= 26;
+    	}
+    
+    
+    	// res contains the answer but in reverse.
+    	// hence, reversing it
+    	int len = res.length ();
+    	String ans = "";
+    	for (int  i = len - 1; i >= 0; i--)
+    	    ans += res.charAt (i);
+    	return ans;
+    }
+}
