@@ -1,0 +1,35 @@
+
+
+/*node class of the linked list
+class Node
+{
+    int data;
+    Node next;
+    Node(int key)
+    {
+        data = key;
+        next = null;
+    }
+}*/
+class Solution
+{
+   public static void rearrange(Node odd)
+    {
+        Node newHead = null;
+        Node currNode = odd;
+        while(currNode!=null && currNode.next!=null){
+            
+            //Create a new List
+            int val = currNode.next.data;
+            Node newNode = new Node(val);
+            newNode.next = newHead;
+            newHead = newNode;
+            
+            //Skip odd nodes
+            currNode.next = currNode.next.next;
+            if(currNode.next!=null)
+                currNode = currNode.next;
+        }
+        currNode.next = newHead;
+    }
+}
