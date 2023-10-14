@@ -1,0 +1,35 @@
+//User function Template for Java
+
+
+class Solution
+{
+    //Function to find the nodes that are common in both BST.
+	public static ArrayList<Integer> findCommon(Node root1,Node root2)
+    {
+        //code here
+        HashSet<Integer> bst1=new HashSet();
+        ArrayList<Integer> bst2=new ArrayList();
+        traverseBst(bst1,root1);
+        traverseBst2(bst2,bst1,root2);
+        Collections.sort(bst2);
+        return bst2;
+    }
+    public static void traverseBst(HashSet<Integer> bst,Node root){
+        if(root==null){
+            return;
+        }
+        bst.add(root.data);
+        traverseBst(bst,root.left);
+        traverseBst(bst,root.right);
+    }
+    public static void traverseBst2(ArrayList<Integer>  bstAdd,HashSet<Integer> check,Node root){
+        if(root==null){
+            return;
+        }
+       if(check.contains(root.data)){
+          bstAdd.add(root.data);
+       }
+        traverseBst2(bstAdd,check,root.left);
+        traverseBst2(bstAdd,check,root.right);
+    }
+}
