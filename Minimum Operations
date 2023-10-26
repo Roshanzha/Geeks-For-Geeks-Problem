@@ -1,0 +1,19 @@
+//User function Template for Java
+
+
+class Solution
+{
+    public int minOperation(int n)
+    {
+        int result=0;
+        while (n>0) {
+            if ((n&1)==1) {
+                n--;
+            } else {
+                n/=2;
+            }
+            result++;
+        }
+        return result;
+    }
+}
