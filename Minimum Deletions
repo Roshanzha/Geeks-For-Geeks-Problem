@@ -1,0 +1,28 @@
+
+
+//User function Template for Java
+
+class Solution{
+    static int solve(String S, int i, int j, int[][] dp) {
+        if(i == j) {
+            return 1;
+        }
+        if(dp[i][j] != -1) {
+            return dp[i][j];
+        }
+        if(S.charAt(i) == S.charAt(j)) {
+            if(i + 1 != j) return dp[i][j] = 2 + solve(S, i + 1, j - 1, dp);
+            else return dp[i][j] = 2;
+        } else {
+            return dp[i][j] = Math.max(solve(S, i + 1, j, dp), solve(S, i , j - 1, dp));
+        }
+    }
+    
+    static int minimumNumberOfDeletions(String S) {
+        int[][] dp = new int [S.length() + 1][S.length() + 1];
+        for(int[]is : dp) {
+            Arrays.fill(is, -1);
+        }
+        return S.length() - solve(S, 0, S.length() - 1, dp);
+    }
+}
