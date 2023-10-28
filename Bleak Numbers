@@ -1,0 +1,42 @@
+//User function Template for Java
+
+
+
+//User function Template for Java
+
+class Solution
+{
+    int countSetBits(int n)
+    {
+        int c=0;
+        while(n!=0)
+        {
+            n=n&(n-1);
+            c++;
+        }
+        return c;
+    }
+    int ceilOfLog(int n)
+    {
+        n--;  // for border cases such as 4 8 16 etc
+        int c=0;
+        while(n!=0)
+        {
+            n=n>>1;
+            c++;
+        }
+        return c;
+    }
+    public int is_bleak(int n)
+    {
+       int ceil = ceilOfLog(n);
+       
+       for(int i=n-ceil;i<n;i++)
+       {
+           if(i+countSetBits(i)==n)
+           return 0;
+       }
+       return 1;
+       
+    }
+}
