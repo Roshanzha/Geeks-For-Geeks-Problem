@@ -1,0 +1,22 @@
+
+
+// User function Template for Java
+
+class Solution {
+    int minDist(int a[], int n, int x, int y) {
+        List<Integer> xl = new ArrayList<>();
+        List<Integer> yl = new ArrayList<>();
+        for(int i=0; i<n; i++){
+            if(a[i] == x) xl.add(i);
+            if(a[i] == y) yl.add(i);
+        }
+        if(xl.size() == 0 || yl.size() == 0)  return -1;
+        int ans = Integer.MAX_VALUE;
+        for(int i: xl){
+            for(int j: yl){
+                ans = Math.min(Math.abs(i-j), ans);
+            }
+        }
+        return ans;
+    }
+}
