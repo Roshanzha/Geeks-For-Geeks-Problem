@@ -1,0 +1,82 @@
+
+
+//User function Template for Java
+
+class Solution{
+    static List<Integer> matrixSum(int n, int m, int mat[][], int q, int queries[][])
+    {
+        List<Integer> list = new ArrayList<>();
+        for(int[] query : queries){
+            if(query[0] == 1){
+                list.add(oneHop(query[1], query[2], mat));    
+            }
+            else{
+                list.add(twoHop(query[1], query[2], mat));
+            }
+        }
+        return list;
+    }
+    
+    static int oneHop(int r, int c, int[][] mat){
+        int sum = 0;
+        //up
+        if(r>0) sum += mat[r-1][c];
+        //down
+        if(r<mat.length-1) sum += mat[r+1][c];
+        //left
+        if(c>0) sum += mat[r][c-1];
+        //right
+        if(c<mat[0].length-1) sum += mat[r][c+1];
+        //up left
+        if(r>0 && c>0) sum += mat[r-1][c-1];
+        //up right
+        if(r>0 && c<mat[0].length-1) sum += mat[r-1][c+1];
+        //down left
+        if(r<mat.length-1 && c>0) sum += mat[r+1][c-1];
+        //down right
+        if(r<mat.length-1 && c<mat[0].length-1) sum += mat[r+1][c+1];
+        return sum;
+    }
+    
+    static int twoHop(int r, int c, int[][] mat){
+        int sum = 0;
+        //up
+        if(r>1) sum += mat[r-2][c];
+        //down
+        if(r<mat.length-2) sum += mat[r+2][c];
+        //left
+        if(c>1) sum += mat[r][c-2];
+        //right
+        if(c<mat[0].length-2) sum += mat[r][c+2];
+        //up left
+        if(r>1 && c>1) sum += mat[r-2][c-2];
+        //up right
+        if(r>1 && c<mat[0].length-2) sum += mat[r-2][c+2];
+        //down left
+        if(r<mat.length-2 && c>1) sum += mat[r+2][c-2];
+        //down right
+        if(r<mat.length-2 && c<mat[0].length-2) sum += mat[r+2][c+2];
+        
+        //up up right
+        if(r>1 && c<mat[0].length-1) sum += mat[r-2][c+1];
+        //up up left
+        if(r>1 && c>0) sum += mat[r-2][c-1];
+        
+        //down down left
+        if(r<mat.length-2 && c>0) sum += mat[r+2][c-1];
+        //down down right
+        if(r<mat.length-2 && c<mat[0].length-1) sum += mat[r+2][c+1];
+        
+        //left left up
+        if(c>1 && r>0) sum += mat[r-1][c-2];
+        //left left down
+        if(c>1 && r<mat.length-1) sum += mat[r+1][c-2];
+        
+        //right right up
+        if(c<mat[0].length-2 && r>0) sum += mat[r-1][c+2];
+        //right right down
+        if(c<mat[0].length-2 && r<mat.length-1) sum += mat[r+1][c+2];
+                
+        return sum;
+    }
+}
