@@ -1,0 +1,33 @@
+
+
+//User function Template for Java
+
+class Solution
+{
+    //Function to return sum of upper and lower triangles of a matrix.
+    static ArrayList<Integer> sumTriangles(int matrix[][], int n)
+    {
+        ArrayList<Integer> ls=new ArrayList<>();
+        if(n==0) return ls;
+        int uppersum=0;
+        int lowersum=0;
+        int row=matrix.length;
+        int col=matrix[0].length;
+        
+        //for upper triangle
+        for(int i=0;i<row;i++){
+            for(int j=i;j<col;j++){
+                uppersum+=matrix[i][j];
+            }
+        }
+        ls.add(uppersum);
+        
+         for(int i=0;i<row;i++){
+            for(int j=0;j<=i;j++){
+                lowersum+=matrix[i][j];
+            }
+        }
+        ls.add(lowersum);
+        return ls;
+    }
+}
