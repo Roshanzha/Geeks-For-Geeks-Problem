@@ -1,0 +1,25 @@
+
+
+// User function Template for Java
+
+class Solution {
+    int countX(int L, int R, int X) {
+         int n=L+1;
+        int count=0;
+        while(n<R){
+            count+=counter(n,X);
+            n++;
+        }
+        return count;
+    }
+    int counter(int n,int X){
+        int count=0;
+        while(n>0){
+            if(n%10==X){
+                count++;
+            }
+            n=n/10;
+        }
+        return count;
+    }
+};
