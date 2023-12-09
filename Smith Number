@@ -1,0 +1,35 @@
+//User function Template for Java
+
+class Solution {
+    static int smithNum(int n) {
+        // code here
+        int digit = sod(n);
+        int prime = primeFactor(n);
+        return digit == prime ? 1 : 0;
+    }
+    static int sod(int n)
+    {
+        int sum = 0;
+        while( n > 0)
+        {
+            sum += n % 10;
+            n/=10;
+        }
+        return sum;
+    }
+    static int  primeFactor(int n )
+    {
+        int factor = 0; int sum = 0; int k = 2;
+        while(n > 1)
+        {
+            if(n % k == 0)
+            {
+                sum += sod(k);
+                factor++;
+                n/=k;
+            }
+            else k++;
+        }
+        return factor <= 1 ? 0 : sum;
+    }
+};
