@@ -1,0 +1,37 @@
+
+
+//User function Template for Java
+
+class Solution{
+    static int maxGold(int n, int m, int grid[][]) {
+        int col = 0;
+        int ans = -1;
+        int[][] dp = new int[n + 1][m + 1];
+        
+        for(int[] arr : dp) Arrays.fill(arr, -1);
+        
+        for(int i = 0; i < n; i++) {
+            ans = Math.max(ans, solveForGold(i, col, grid, m, n, dp));
+        }
+        return ans;
+    }
+
+    private static int solveForGold(int row, int col, int[][] grid, int m, int n, int[][] dp) {
+        //index bound condition
+        if(row < 0 || row >= n || col < 0 || col >= m) return 0;
+        
+        if(dp[row][col] != -1) return dp[row][col];
+        
+        int ans = 0;
+        int[][] paths = {{0, 1}, {-1, 1}, {1, 1}};
+        for(int[] path : paths) {
+            ans = Math.max(ans, grid[row][col] + solveForGold(row + path[0], col+ path[1], grid, m, n, dp));
+        }
+        return dp[row][col] = ans;
+    }
+
+    static boolean isValid(int n, int m, int i,int j){
+        if(i<0 || j<0 || i>=n || j>=m)  return false;
+        return true;
+    }
+}
