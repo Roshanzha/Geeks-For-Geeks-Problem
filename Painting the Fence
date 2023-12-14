@@ -1,0 +1,23 @@
+//User function Template for Java
+
+
+class Solution
+{
+    long countWays(int n,int k)
+    {
+        //code here.
+        long mod = 1000000007L;
+        long same = 0;
+        long diff = k;
+        long total = same + diff;
+
+        for (int i = 2; i <= n; ++i) {
+            same = diff * 1;
+            diff = (total * (k - 1)) % mod;
+            total = same + diff;
+        }
+
+        return total % mod;
+    }
+}
+
