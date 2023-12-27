@@ -1,0 +1,40 @@
+
+
+//User function Template for Java
+
+class Solution
+{
+     public int[] antiDiagonalPattern(int[][] a)
+    {
+        int n=a.length;
+    
+      
+      int ans[]=new int[n*n];
+      int k=0;
+      for(int i=0;i<n;i++){
+        ans[k]=a[0][i];
+        k++;
+int s=1;int l=i-1;
+while(s<n&&l>=0){
+    ans[k]=a[s][l];
+    s++;l--;
+    k++;
+}
+      }
+      for(int i=1;i<n;i++){
+            ans[k]=a[i][n-1];
+        k++;
+        int s=n-2;int l=i+1;
+        while(s>=0&&l<n){
+             ans[k]=a[l][s];
+    s--;l++;
+    k++;
+        }
+        
+      }
+      
+      
+      return ans;
+
+    }
+}
