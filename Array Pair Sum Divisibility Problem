@@ -1,0 +1,35 @@
+
+
+// User function Template for Java
+
+class Solution {
+    public boolean canPair(int[] nums, int k) {
+        
+        int n=nums.length,pairs=0,count0=0;
+        if(n%2!=0)return false;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        
+        
+        //edge case:handel when both the numbers are divisible by 0. Else its a simple 2 sum problem
+        
+        for(int num:nums){
+            num=num%k;
+            if(num==0){
+                count0++;
+                continue;
+            }
+            if(map.containsKey(k-num)){
+                pairs++;
+                map.put(k-num,map.get(k-num)-1);
+                if(map.get(k-num)==0)
+                    map.remove(k-num);
+            }
+            else{
+                map.put(num,map.getOrDefault(num,0)+1);
+            }
+            //System.out.println(map);
+        }
+        
+        return ((pairs+(count0/2))==n/2)?true:false;
+    }
+}
