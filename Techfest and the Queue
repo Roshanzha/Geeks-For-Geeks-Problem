@@ -1,0 +1,31 @@
+
+
+
+class Solution {
+    public static long sumOfPowers(long a, long b) {
+        long result = 0;
+        
+        while (a <= b) {
+            result += getPrime(a);
+            a++;
+        }
+        return result;
+    }
+    
+    public static long getPrime(long n) {
+        int powerSum = 0;
+        
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            while (n % i == 0) {
+                powerSum++;
+                n /= i;
+            }
+        }
+        
+        if (n != 1) {
+            powerSum++;
+        }
+        return powerSum;
+    }
+}
+        
