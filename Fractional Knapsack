@@ -1,0 +1,32 @@
+
+
+/*
+class Item {
+    int value, weight;
+    Item(int x, int y){
+        this.value = x;
+        this.weight = y;
+    }
+}
+*/
+
+class Solution
+{
+   
+    
+    double fractionalKnapsack(int W, Item arr[], int n)
+    {
+         Arrays.sort(arr,(a,b)->Double.compare(b.value*1.0/b.weight,a.value*1.0/a.weight));
+        double maxValue = 0;
+        for (Item item : arr) {
+            if (item.weight <= W) {
+                maxValue += item.value;
+                W -= item.weight;
+            } else {
+                maxValue += (double) item.value / item.weight * W;
+                break;
+            }
+        }
+        return maxValue;
+}
+}
