@@ -1,0 +1,18 @@
+
+
+//User function Template for Java
+
+class Solution{
+    static ArrayList<Integer> recamanSequence(int n){
+        int prev = 0;
+        ArrayList<Integer>ans = new ArrayList<>();
+        ans.add(0);
+        for(int i = 1;i<n;i++){
+            int curr = prev-i;
+            if(curr<0 || ans.contains(curr))curr = prev+i;
+            ans.add(curr);
+            prev = curr;
+        }
+        return ans;
+    }
+}
