@@ -1,0 +1,25 @@
+//User function Template for Java
+
+class Solution
+{
+    public char nthCharacter(String s, int r, int n)
+    {
+        //code here
+        StringBuilder sb = new StringBuilder(s);
+        for(int j =0 ; j < r ; j++){
+            StringBuilder sb1 = new StringBuilder();
+            for (int i = 0; i < sb.length(); i++) {
+                if (sb.charAt(i) == '0') {
+                    sb1.append("01");
+                } else {
+                    sb1.append("10");
+                }
+                if(sb1.length() > n) {
+                    break;
+                }
+            }
+            sb = sb1;
+       }
+        return sb.charAt(n);
+    }
+}
