@@ -1,0 +1,55 @@
+/*
+Structure of node class is:
+class Node {
+    char data;
+    Node next;
+    
+    public Node(char data){
+        this.data = data;
+        next = null;
+    }
+}
+*/
+class Solution {
+    
+    public Node arrangeCV(Node head){
+        //write code here and return the head of changed linked list
+       ArrayList<Character> a= new  ArrayList<>();
+       Node  p =head;
+       while(p!=null){
+           a.add(p.data);
+           p=p.next;
+           
+       }
+      ArrayList<Character> vow=new ArrayList<>();
+      ArrayList<Character> con=new ArrayList<>();
+      int l=a.size();
+      for(int i=0;i<l;i++){
+          if(a.get(i)=='a'||a.get(i)=='e'||a.get(i)=='i'||a.get(i)=='o'||a.get(i)=='u'){
+              vow.add(a.get(i));
+              
+          }
+          else{
+              con.add(a.get(i));
+          }
+      }
+      p=head;
+      int o=vow.size();
+      int temp=0;
+      int gemp=0;
+      while(p!=null){
+          if(temp<o){
+              p.data=vow.get(temp++);
+          }
+          else{
+              p.data=con.get(gemp++);
+              
+          }
+          p=p.next;
+      }
+      return head;
+      
+      
+      
+    }
+}
