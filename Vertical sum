@@ -1,0 +1,50 @@
+/*Complete the function below
+Node is as follows:
+class Node{
+int data;
+Node left, right;
+Node(int item)
+{
+    data = item;
+    left = right = null
+}
+}
+*/
+class Solution{
+    public ArrayList <Integer> verticalSum(Node root) {
+        TreeMap<Integer, ArrayList<Integer>> map = new TreeMap<>();
+        Queue<Pair> queue = new LinkedList<>();
+        
+        queue.offer(new Pair(root, 0));
+        
+        while(!queue.isEmpty()){
+            Node cur = queue.peek().node;
+            int l = queue.peek().l;
+            queue.poll();
+            if(!map.containsKey(l)){
+                map.put(l, new ArrayList<>());
+            }
+            map.get(l).add(cur.data);
+            if(cur.left != null){
+                queue.offer(new Pair(cur.left, l-1));
+            }
+            if(cur.right != null){
+                queue.offer(new Pair(cur.right, l+1));
+            }
+        }
+        // System.out.println(map);
+        ArrayList<Integer> al = new ArrayList<>();
+        for(int x:map.keySet()){
+            al.add(map.get(x).stream().reduce(0, Integer::sum));
+        }
+        return al;
+    }
+    class Pair{
+        int l;
+        Node node;
+        Pair(Node node, int l){
+            this.l = l;
+            this.node = node;
+        }
+    }
+}
